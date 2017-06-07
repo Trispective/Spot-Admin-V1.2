@@ -1,0 +1,53 @@
+<script src="https://www.gstatic.com/firebasejs/4.0.0/firebase.js"></script>
+ <script> 
+// var fireMail = require("fire-mail");
+
+ //document.getElementById("test").innerHtml="hi";
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyDxVvg6RlcQuZDQ018QAdcHo1i09L5ly0Q",
+    authDomain: "spot-v1.firebaseapp.com",
+    databaseURL: "https://spot-v1.firebaseio.com",
+    projectId: "spot-v1",
+    storageBucket: "spot-v1.appspot.com",
+    messagingSenderId: "119293124758"
+  };
+  firebase.initializeApp(config);
+
+
+//document.getElementById("test").innerHTML= "Please";
+ var fireMail = require("fire-mail");
+
+ var nodemailer = require("nodemailer");
+ 
+// create reusable transport method (opens pool of SMTP connections) 
+var smtpTransport = nodemailer.createTransport("SMTP",{
+    service: "Gmail",
+    auth: {
+        user: "spot.contacct@gmail.com",
+        pass: "spot-1234"
+    }
+});
+
+// setup e-mail data with unicode symbols 
+var mailOptions = {
+    from: "Fred Foo ✔ <foo@blurdybloop.com>", // sender address 
+    to: "malak-al-ateeq@hotmail.com", // list of receivers 
+    subject: "Hello ✔", // Subject line 
+    text: "Hello world ✔", // plaintext body 
+    html: "<b>Hello world ✔</b>" // html body 
+}
+
+// send mail with defined transport object 
+smtpTransport.sendMail(mailOptions, function(error, response){
+    if(error){
+        console.log(error);
+    }else{
+        console.log("Message sent: " + response.message);
+    }
+ 
+    // if you don't want to use this transport object anymore, uncomment following line 
+    //smtpTransport.close(); // shut down the connection pool, no more messages 
+});
+
+</script>

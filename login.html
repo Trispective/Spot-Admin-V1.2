@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html >
+<head>
+<link rel="stylesheet" type="text/css" href="style.css"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <script src="https://www.gstatic.com/firebasejs/4.0.0/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyDxVvg6RlcQuZDQ018QAdcHo1i09L5ly0Q",
+    authDomain: "spot-v1.firebaseapp.com",
+    databaseURL: "https://spot-v1.firebaseio.com",
+    projectId: "spot-v1",
+    storageBucket: "spot-v1.appspot.com",
+    messagingSenderId: "119293124758"
+  };
+  firebase.initializeApp(config);
+</script>
+  <title> Spot </title>
+</head>
+<body>
+<script type="text/javascript">
+// Get a reference to the database service
+var database = firebase.database();
+function signuser()
+{
+event.preventDefault();
+firebase.auth().signInWithEmailAndPassword(document.getElementById("UserEmail").value, document.getElementById("Rpassword").value).catch(function(error) {
+  var errorCode = error.code;
+  var errorMessage = error.message;
+ // var user = firebase.auth().currentUser;
+  if(errorCode)
+    {
+	    alert("Wrong User name or password");
+	    return false;
+    }
+}).then(function(user){
+  window.location = "control_panel.html";
+});
+}
+</script>
+<div id="logo" >
+<img src="logo.png" style="width:150px;height:130px;">
+
+<h1> Spot </h1>
+<h2> A social media app for food. </h2>
+<br>
+<a href="">
+<img src="app.png" style="width:250px;height:90px;">
+</a>
+<br><br><br>
+
+</div>
+
+
+<a class = "link" href="login.html"> Admin Home </a>
+
+<br>
+
+<h3> Login </h3>
+<div class="text">
+	<form name="loginForm" onsubmit= "signuser()">
+		<table>
+		<tr>
+		<td><h4> Username: </h4> </td>
+		<td><input type="text" name="UserEmail" id="UserEmail" class="textfield" required= "true"= "true"></td>
+		</tr>
+		<tr>
+		<td><h4>Password:</h4></td>
+		<td><input type="password" name="Rpassword" id="Rpassword" class="textfield" required= "true"= "true"></td>
+		</tr>
+		<tr>
+		<td><input type="submit" name="submit" class="sub" value="Login" ></td>
+		</tr>
+		</table>
+		<br>
+		<a href="Forgot_password.html">forgot your password?</a>
+	
+
+	</form>
+	</div>
+</body>
+</html>
